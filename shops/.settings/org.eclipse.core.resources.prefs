@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/web.xml=UTF-8
+encoding//src/cn/itcast/shop/adminuser/dao/AdminUserDao.java=UTF-8
+encoding//src/cn/itcast/shop/cart/vo/Cart.java=UTF-8
+encoding//src/cn/itcast/shop/category/dao/CategoryDao.java=UTF-8
+encoding//src/cn/itcast/shop/categorysecond/adminaction/AdminCategorySecondAction.java=UTF-8
+encoding//src/cn/itcast/shop/categorysecond/dao/CategorySecondDao.java=UTF-8
+encoding//src/cn/itcast/shop/interceptor/PrivilegeInterceptor.java=UTF-8
+encoding//src/cn/itcast/shop/order/action/OrderAction.java=UTF-8
+encoding//src/cn/itcast/shop/order/dao/OrderDao.java=UTF-8
+encoding//src/cn/itcast/shop/product/dao/ProductDao.java=UTF-8
+encoding//src/cn/itcast/shop/user/dao/UserDao.java=UTF-8
+encoding//src/cn/itcast/shop/utils/PaymentUtil.java=UTF-8

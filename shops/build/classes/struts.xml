@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    
+	<package name="shop" extends="struts-default" namespace="/">
+		<!-- 配置自定义拦截器 -->
+		
+		<global-results>
+			<result name="msg">/jsp/msg.jsp</result>
+			<result name="login">/admin/index.jsp</result>
+		</global-results>
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+	
+		
+		<!-- 配置首页访问的Action -->
+		<action name="index" class="indexAction">
+			<result name="index">/jsp/index.jsp</result>
+		</action>
+		
+		<!-- 配置用户模块的Action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="registPage">/jsp/regist.jsp</result>
+			<result name="input">/jsp/regist.jsp</result>
+			<result name="loginPage">/jsp/login.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index</result>
+			<result name="quit" type="redirectAction">index</result>
+			<result name="checkcodeFail">/jsp/regist.jsp</result>
+		</action>
+		
+		<!-- 验证码Action -->
+		<action name="checkImg" class="checkImgAction"></action>
+		<!-- 商品模块的Action -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="findByPid">/jsp/product.jsp</result>
+			<result name="findByCid">/jsp/productList.jsp</result>
+			<result name="findByCsid">/jsp/productList.jsp</result>
+		</action>
+		
+		<!-- 购物车的Action -->
+		<action name="cart_*" class="cartAction" method="{1}">
+			<result name="addCart">/jsp/cart.jsp</result>
+			<result name="clearCart">/jsp/cart.jsp</result>
+			<result name="removeCart">/jsp/cart.jsp</result>
+			<result name="myCart">/jsp/cart.jsp</result>
+		</action>
+		
+		<!-- 订单的Action -->
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="saveOrder">/jsp/order.jsp</result>
+			<result name="findByUid">/jsp/orderList.jsp</result>
+			<result name="findByOid">/jsp/order.jsp</result>
+			<result name="updateStateSuccess" type="redirectAction">order_findByUid.action?page=1</result>
+		</action>
+		
+		<!-- 后台登录Action -->
+		<action name="adminUser_*" class="adminUserAction" method="{1}">
+			<result name="loginFail">/admin/index.jsp</result>
+			<result name="loginSuccess" type="redirect">/admin/home.jsp</result>
+			
+		</action>
+		
+		<!-- 后台一级分类管理Action -->
+		<action name="adminCategory_*" class="adminCategoryAction" method="{1}">
+			<result name="findAll">/admin/category/list.jsp</result>
+			<result name="saveSuccess" type="redirectAction">adminCategory_findAll</result>
+			<result name="deleteSuccess" type="redirectAction">adminCategory_findAll</result>
+			<result name="editSuccess">/admin/category/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">adminCategory_findAll</result>
+			
+			
+		</action>
+		
+		<!-- 后台二级分类管理Action -->
+		<action name="adminCategorySecond_*" class="adminCategorySecondAction" method="{1}">
+			<result name="findAll">/admin/categorysecond/list.jsp</result>
+			<result name="addPage">/admin/categorysecond/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">adminCategorySecond_findAll?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">adminCategorySecond_findAll?page=1</result>
+			<result name="editSuccess">/admin/categorysecond/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">adminCategorySecond_findAll?page=1</result>
+			
+		</action>
+		
+		<!-- 后台商品管理的Action -->
+		<action name="adminProduct_*" class="adminProductAction" method="{1}">
+			<result name="findAll">/admin/product/list.jsp</result>
+			<result name="addPageSuccess">/admin/product/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+			<result name="editSuccess">/admin/product/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">adminProduct_findAll.action?page=1</result>
+			
+		</action>
+		
+		<!-- 后台订单管理Action -->
+		<action name="adminOrder_*" class="adminOrderAction" method="{1}">
+			<result name="findAll">/admin/order/list.jsp</result>
+			<result name="updateStateSuccess" type="redirectAction">adminOrder_findAll.action?page=1</result>
+			<result name="findOrderItem" >/admin/order/orderItem.jsp</result>
+			
+		</action>
+		
+		<!-- 后台用户管理Action -->
+		<action name="userAdmin_*" class="userAdminAction" method="{1}">
+			<result name="findAll">/admin/user/list.jsp</result>
+			<result name="deleteSuccess" type="redirectAction">userAdmin_findAll.action?page=1</result>
+			<result name="editSuccess">/admin/user/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">userAdmin_findAll.action?page=1</result>
+			
+		</action>
+	</package>
+</struts>
